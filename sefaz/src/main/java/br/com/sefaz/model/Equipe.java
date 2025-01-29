@@ -12,12 +12,12 @@ public class Equipe {
 
     private String nome;
 
-    @OneToMany(mappedBy = "id_projeto", cascade = CascadeType.ALL)
+    // Correção: mappedBy precisa ser o nome do atributo "equipe" na classe Projeto
+    @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Projeto> projetos;
 
-    @ElementCollection
-    @CollectionTable(name = "id_responsavel", joinColumns = @JoinColumn(name = "equipe_id"))
-    @Column(name = "responsavel")
+    // Correção: Relacionamento correto com Responsavel
+    @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Responsavel> responsaveis;
 
     // Getters e Setters

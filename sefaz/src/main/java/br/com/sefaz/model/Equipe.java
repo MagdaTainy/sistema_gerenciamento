@@ -12,13 +12,13 @@ public class Equipe {
 
     private String nome;
 
-    @OneToMany(mappedBy = "equipeResponsavel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id_projeto", cascade = CascadeType.ALL)
     private List<Projeto> projetos;
 
     @ElementCollection
-    @CollectionTable(name = "equipe_membros", joinColumns = @JoinColumn(name = "equipe_id"))
-    @Column(name = "membro")
-    private List<String> membros;
+    @CollectionTable(name = "id_responsavel", joinColumns = @JoinColumn(name = "equipe_id"))
+    @Column(name = "responsavel")
+    private List<Responsavel> responsaveis;
 
     // Getters e Setters
     public Long getId() {
@@ -45,11 +45,11 @@ public class Equipe {
         this.projetos = projetos;
     }
 
-    public List<String> getMembros() {
-        return membros;
+    public List<Responsavel> getResponsaveis() {
+        return responsaveis;
     }
 
-    public void setMembros(List<String> membros) {
-        this.membros = membros;
+    public void setResponsaveis(List<Responsavel> responsaveis) {
+        this.responsaveis = responsaveis;
     }
 }

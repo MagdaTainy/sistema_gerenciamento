@@ -1,8 +1,3 @@
-package br.com.sefaz.model;
-
-import jakarta.persistence.*;
-import java.time.LocalDate;
-
 @Entity
 public class Projeto {
 
@@ -10,7 +5,6 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome")
     private String nome;
 
     @Column(length = 200)
@@ -26,7 +20,8 @@ public class Projeto {
     @JoinColumn(name = "equipe_id")
     private Equipe equipeResponsavel;
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
+    @JoinColumn(name = "status_id") // Alterado para refletir a FK correta
     private StatusProjeto status;
 
     // Getters e Setters
@@ -86,4 +81,3 @@ public class Projeto {
         this.status = status;
     }
 }
-

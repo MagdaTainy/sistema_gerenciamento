@@ -1,7 +1,6 @@
 package br.com.sefaz.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 public class Projeto {
@@ -10,7 +9,7 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "titulo")
+    @Column(name = "titulo", nullable = false)
     private String titulo;
 
     @Column(length = 200)
@@ -18,8 +17,9 @@ public class Projeto {
 
     @Column(name = "prazo")
     private int prazo;
-   
-    @Enumerated(EnumType.STRING)
+
+    @ManyToOne
+    @JoinColumn(name = "status_id") // Chave estrangeira para StatusTarefa
     private StatusTarefa status;
 
     // Getters e Setters
@@ -32,7 +32,7 @@ public class Projeto {
     }
 
     public String getTitulo() {
-        return nome;
+        return titulo;
     }
 
     public void setTitulo(String titulo) {
@@ -63,4 +63,3 @@ public class Projeto {
         this.status = status;
     }
 }
-
